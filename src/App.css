@@ -1,38 +1,103 @@
-.App {
-  text-align: center;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/*
+body, html {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+  height: 100%;
   display: flex;
   flex-direction: column;
+}
+.header {
+  display: flex;
   align-items: center;
+  padding: 10px 0px;
+  background-color: white;
+  border-bottom: 2px solid #ddd;
+  position: fixed; 
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+
+
+.logo {
+  width: 100px;  
+  margin-left: 5px;
+  position: fixed;
+  top: 5px;
+  vertical-align: middle;
+}
+
+.menu {
+  list-style: none;
+  padding-top: 8px;
+  padding-bottom: 10px;
+  margin: 10;
+  display: flex;
+  gap: 15px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  position: relative;
+}
+
+
+.menu::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ddd;
+}
+
+.menu li {
+  display: inline;
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  transition: all 0.3s;
+  padding: 10px;
+}
+
+.nav-button:hover {
+  color: red;
+}
+
+main {
+  text-align: center;
+  padding: 120px 20px 50px; 
+  flex: 1; 
+}
+
+main h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #222;
+} 
+*/
+
+/* 푸터 스타일 */
+.footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  font-size: 14px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-top: auto; /* 화면 하단에 고정 */
 }

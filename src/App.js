@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Login from "./components/Login";
+import Board from "./components/Board";
+import Signup from "./components/Signup";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { useState, createContext} from "react";
+import "./App.css";
 
-function App() {
+const AuthContext = createContext();
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <Router>
+    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/board" element={<Board />} />
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
+        <Footer />
+      </div>
+    </AuthContext.Provider>
+  </Router>
+
   );
-}
+};
 
 export default App;
+export { AuthContext };
