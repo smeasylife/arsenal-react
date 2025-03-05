@@ -5,16 +5,13 @@ import Login from "./components/Login";
 import Board from "./components/Board";
 import Signup from "./components/Signup";
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import { useState, createContext} from "react";
+import { AuthProvider } from "./AuthContext";
 import "./App.css";
 
-const AuthContext = createContext();
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
   return (
-  <Router>
-    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
+    <Router>
+      <AuthProvider>
       <div className="flex flex-col min-h-screen">
         <Header />
         <Routes>
@@ -23,12 +20,12 @@ const App = () => {
           <Route path="/signup" element={<Signup />} />
         </Routes>
         <Footer />
-      </div>
-    </AuthContext.Provider>
-  </Router>
+        </div> 
+        
+      </AuthProvider>
+    </Router>
 
   );
 };
 
 export default App;
-export { AuthContext };

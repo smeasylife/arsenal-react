@@ -1,13 +1,13 @@
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { AuthContext } from "../App";
+import { useAuth } from "../AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { setIsAuthenticated } = useContext(AuthContext);
+  const { setIsAuthenticated } = useAuth();
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // 폼 제출 시 새로고침 방지

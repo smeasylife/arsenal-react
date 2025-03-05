@@ -1,20 +1,38 @@
 // Header.js
 import React from "react";
-import { useContext } from "react";
-import { AuthContext } from "../App";
+import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
 
   const handleNavigation = (path) => {
     if (isAuthenticated) {
       navigate(path);
     } else {
-      navigate("/login"); // 로그인되지 않았다면 로그인 페이지로 이동
+      navigate("/login");
     }
   };
+
+  const handleLoginAndOut = () => {
+    if (isAuthenticated) {
+      try {
+        axios({
+          url: 'http://localhost:8080/logout',
+          method: 'POST',
+          withCredentials: true,
+        });
+        setIsAuthenticated(false);
+        navigate("/");
+      } catch (error) {
+        console.error("로그아웃 실패:", error);
+      }
+    } else {
+      navigate("/login");
+    }
+  }  
 
   return (
     <header className="flex items-center p-4 shadow-md bg-white fixed top-0 w-full z-50 border-b-2 border-gray-200">
@@ -34,10 +52,10 @@ const Header = () => {
             <button className="text-base font-bold text-gray-800 hover:text-red-600 transition" onClick={() => handleNavigation("/news")}>구단 뉴스</button>
           </li>
           <li>
-             <button className="text-base font-bold text-gray-800 hover:text-red-600 transition" onClick={() => navigate("/board")}>자유 게시판</button>
+             <button className="text-base font-bold text-gray-800 hover:text-red-600 transition" onClick={() => handleNavigation("/board")}>자유 게시판</button>
           </li>
           <li>
-            <button className="text-base font-bold text-gray-800 hover:text-red-600 transition" onClick={() => navigate("/login")}>로그인</button>
+            <button className="text-base font-bold text-gray-800 hover:text-red-600 transition" onClick={() => handleLoginAndOut()}>{isAuthenticated ? "로그아웃" : "로그인"}</button>
           </li>
         </ul>
       </nav>
